@@ -1,6 +1,6 @@
 import React from 'react';
 let baseURL = 'http://localhost:3003'
-// JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003. WE CAN UPDATE TO THE BUILD PACK LATER ON
+// JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
 
 
 class App extends React.Component {
@@ -40,7 +40,6 @@ class App extends React.Component {
           <tr key={jobs._id} >
             <td> {jobs.agency }</td>
             <td> {jobs.business_title }</td>
-            <td> {jobs.job_description }</td>
           </tr>
         )
       })
