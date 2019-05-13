@@ -1,4 +1,5 @@
 import React from 'react';
+import Login from './components/Login'
 let baseURL = 'http://localhost:3003'
 // JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
 
@@ -33,19 +34,20 @@ class App extends React.Component {
     return (
       <div className="container">
         <h1>This is the start of the frontend!</h1>
+        <Login />
         <table>
-  <tbody>
-    { this.state.jobs.map(jobs => {
-        return (
-          <tr key={jobs._id} >
-            <td> {jobs.agency }</td>
-            <td> {jobs.business_title }</td>
-          </tr>
-        )
-      })
-    }
-  </tbody>
-</table>
+          <tbody>
+            { this.state.jobs.map(jobs => {
+                return (
+                  <tr key={jobs._id} >
+                    <td> {jobs.agency }</td>
+                    <td> {jobs.business_title }</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
       </div>
     )
   }
