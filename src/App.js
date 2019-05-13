@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './components/Login'
 import CreateForm from './components/CreateForm'
+import Show from './components/Show'
 let baseURL = 'http://localhost:3003'
 // JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
 
@@ -9,9 +10,12 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      jobs: []
+      jobs: [],
+      job: ''
     }
+    this.deleteJob = this.deleteJob.bind(this)
     this.getJobs = this.getJobs.bind(this)
+    this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
   }
 
@@ -19,6 +23,19 @@ class App extends React.Component {
     this.getJobs()
   }
 
+  deleteJob(id) {
+    fetch(baseURL + '/jobs/' + id, {
+      method: 'DELETE'
+    }).then(res => {
+      const findIndex = this.state.jobs.findIndex(job => job._id === id)
+      const copyJobs = [...this.state.jobs]
+      copyJobs.splice(findIndex, 1)
+      this.setState({
+        jobs: copyJobs
+      })
+    })
+  }
+  
   getJobs() {
     fetch(baseURL + '/jobs')
       .then(data => {
@@ -32,6 +49,12 @@ class App extends React.Component {
 
   }
 
+  getSingleJob(job) {
+    this.setState({
+      job: job
+    })
+  }
+
   handleAddJob(job) {
     const copyJobs = [job, ...this.state.jobs]
     // copyJobs.unshift(job)
@@ -39,6 +62,7 @@ class App extends React.Component {
       jobs: copyJobs
     })
   }
+
 
   render() {
 
@@ -56,15 +80,27 @@ class App extends React.Component {
           <tbody>
             { this.state.jobs.map(jobs => {
                 return (
-                  <tr key={jobs._id} >
+                  <tr 
+                  key={jobs._id}
+                  onMouseOver={() => this.getSingleJob(jobs)}
+                  >
                     <td> {jobs.business_title }</td>
                     <td> {jobs.url }</td>
+                    <td onClick={() => this.deleteJob(jobs._id)}>
+                      &times;
+                    </td>
                   </tr>
                 )
               })
             }
           </tbody>
         </table>
+
+        {(this.state.job)
+          ? <Show job={this.state.job}/>
+          : null
+        }
+
       </div>
     )
   }
