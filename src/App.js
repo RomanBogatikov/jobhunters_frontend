@@ -12,12 +12,26 @@ class App extends React.Component {
     this.state = {
       jobs: []
     }
+    this.deleteJob = this.deleteJob.bind(this)
     this.getJobs = this.getJobs.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
   }
 
   componentDidMount(){
     this.getJobs()
+  }
+
+  deleteJob(id) {
+    fetch(baseURL + '/jobs/' + id, {
+      method: 'DELETE'
+    }).then(res => {
+      const findIndex = this.state.jobs.findIndex(job => job._id === id)
+      const copyJobs = [...this.state.jobs]
+      copyJobs.splice(findIndex, 1)
+      this.setState({
+        jobs: copyJobs
+      })
+    })
   }
   
   getJobs() {
@@ -59,6 +73,9 @@ class App extends React.Component {
                   <tr key={jobs._id} >
                     <td> {jobs.business_title }</td>
                     <td> {jobs.url }</td>
+                    <td onClick={() => this.deleteJob(jobs._id)}>
+                      &times;
+                    </td>
                   </tr>
                 )
               })
