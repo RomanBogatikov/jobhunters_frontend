@@ -12,12 +12,13 @@ class App extends React.Component {
     super(props)
     this.state = {
       jobs: [],
-      job: ''
+      job: '' // prop for show route obj
     }
     this.deleteJob = this.deleteJob.bind(this)
     this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
+    this.toggleApplied = this.toggleApplied.bind(this)
   }
 
   componentDidMount(){
@@ -25,6 +26,7 @@ class App extends React.Component {
   }
 
   deleteJob(id) {
+    // remove selected job from database and rerender state
     fetch(baseURL + '/jobs/' + id, {
       method: 'DELETE'
     }).then(res => {
@@ -50,19 +52,36 @@ class App extends React.Component {
   }
 
   getSingleJob(job) {
+    // sets this.state.job to selected job for Show component
     this.setState({
       job: job
     })
   }
 
   handleAddJob(job) {
+    // adds created job to this.state.jobs
     const copyJobs = [job, ...this.state.jobs]
-    // copyJobs.unshift(job)
     this.setState({
       jobs: copyJobs
     })
   }
 
+  toggleApplied(job) {
+    // updates applied prop in selected job
+    fetch(baseURL + '/jobs/' + job._id, {
+      method: 'PUT',
+      body: JSON.stringify({applied: !job.applied}),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then(res => res.json())
+    .then(resJSON => {
+        const copyJobs = [...this.state.jobs]
+        const findIndex = this.state.jobs.findIndex(job => job._id === resJSON._id)
+        copyJobs[findIndex].applied = resJSON.applied
+        this.setState({jobs: copyJobs})
+    })
+  }
 
   render() {
 
@@ -89,6 +108,14 @@ class App extends React.Component {
                     <td onClick={() => this.deleteJob(jobs._id)}>
                       &times;
                     </td>
+                    <td>
+                      {(jobs.applied)
+                      ? "applied"
+                      : "not applied"}
+                    </td>
+                    <button onClick={() => this.toggleApplied(jobs)}>
+                      Applied
+                    </button>
                   </tr>
                 )
               })
