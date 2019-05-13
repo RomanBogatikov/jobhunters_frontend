@@ -5,7 +5,8 @@ class Login extends React.Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,9 +33,20 @@ class Login extends React.Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => console.log(res))
+        }).then(res => {
+            if (res.status === 200) {
+                this.props.history.push('/');
+            } else {
+                const error = new Error(res.error);
+                throw error;
+            }
+        }).catch(err => {
+            console.error(err);
+            alert('Error logging in. Please, try again.')
+        })
         //   .then(resJSON => {
-        //       this.props.handleAddJob(resJSON)
+        //     console.log('res.json=', resJSON);
+        //     //   this.props.handleAddJob(resJSON)
         //   }).catch(error => console.error({'Error': error}))
 
     }
@@ -43,19 +55,19 @@ class Login extends React.Component {
             <form onSubmit={this.handleSubmit}>
             {/* put handleSubmit in form tag */}
                 <label htmlFor="username">Username</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
                     value={this.state.username}
                     onChange={this.handleChange}
                 />
                 <label htmlFor="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    value={this.state.password} 
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={this.state.password}
                     onChange={this.handleChange}
                 />
                 <input type="submit"/>
