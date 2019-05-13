@@ -22,6 +22,21 @@ class Login extends React.Component {
                 // on success, go to index page
         // clear values after submit
         console.log('submitted!')
+
+        fetch('http://localhost:3003' + '/users', {
+            method: 'POST',
+            body:JSON.stringify({
+                username: this.state.username,
+                password: this.state.password,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => console.log(res))
+        //   .then(resJSON => {
+        //       this.props.handleAddJob(resJSON)
+        //   }).catch(error => console.error({'Error': error}))
+
     }
     render() {
         return (
