@@ -5,7 +5,6 @@ import Show from './components/Show'
 let baseURL = 'http://localhost:3003'
 // JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
 
-
 class App extends React.Component {
   // ADDED CONSTRUCTOR
   constructor(props) {
@@ -21,7 +20,7 @@ class App extends React.Component {
     this.toggleApplied = this.toggleApplied.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getJobs()
   }
 
@@ -40,14 +39,15 @@ class App extends React.Component {
   }
   
   getJobs() {
-    fetch(baseURL+ '/jobs')
+    fetch(baseURL + '/jobs')
       .then(data => {
-        return data.json()},
+        return data.json()
+      },
         err => console.log(err))
-      .then(parsedData => this.setState({jobs: parsedData}),
-       err=> console.log(err))
+      .then(parsedData => this.setState({ jobs: parsedData }),
+        err => console.log(err))
 
-       console.log('current base URL:', baseURL)
+    console.log('current base URL:', baseURL)
 
   }
 
