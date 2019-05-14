@@ -125,8 +125,7 @@ class App extends React.Component {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
-    .then(res => {
+    }).then(res => {
         if (res.status === 200) {
             // console.log('ready to isAuthenticated');
             // this.props.history.push('/');
@@ -135,14 +134,12 @@ class App extends React.Component {
                 username: username,
             })
             // isAuthenticated = true;
-        } else if (res.status === 500) {
+        } else {
             const error = new Error(res.error);
             throw error;
             // return res;
         }
-    })
-    .then(resJSON => console.log('resJSON=', resJSON))
-    .catch(err => {
+    }).catch(err => {
         console.error(err);
         alert('Error logging in. Please, try again.')
     })
