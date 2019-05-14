@@ -7,17 +7,46 @@ class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: this.props.username,
-            password: this.props.password,
+            signup: {
+                username: '',
+                password: '',
+            },
+            login: {
+                username: '',
+                password: '',
+            }
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChangeSignup = this.handleChangeSignup.bind(this);
         // this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChangeLogin = this.handleChangeLogin.bind(this);
     }
-    handleChange(event) {
+    handleChangeSignup(event) {
         this.setState({
-            [event.currentTarget.id]: event.currentTarget.value
+            signup: {...this.state.signup, [event.currentTarget.id]: event.currentTarget.value},
+
         })
     }
+        // let signup = {...this.state.si}
+
+        // this.setState({
+        //     signup: {
+        //         {...this.state.signup},
+        //         {[event.currentTarget.id]: event.currentTarget.value}
+        //     }
+        // })
+
+
+    handleChangeLogin(event) {
+        // this.setState({login: {
+        //     [event.currentTarget.id]: event.currentTarget.value
+        // }})
+        this.setState({
+            login: {...this.state.login, [event.currentTarget.id]: event.currentTarget.value},
+
+        })
+    }
+
+
     // handleSubmit(event) {
     //     event.preventDefault()
     //     // send to login route on server
@@ -63,28 +92,54 @@ class Login extends React.Component {
     render() {
         return (
             <div>
+                <form onSubmit={(event) => this.props.handleSubmit(event, this.state.signup.username, this.state.signup.password)} id="signup">
+                {/* put handleSubmit in form tag */}
+                    <fieldset>
+                        <legend>Sign Up</legend>
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={this.state.signup.username}
+                            onChange={this.handleChangeSignup}
+                        />
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={this.state.signup.password}
+                            onChange={this.handleChangeSignup}
+                        />
+                        <input type="submit"/>
+                    </fieldset>
+                </form>
 
+                <form onSubmit={(event) => this.props.handleSubmit(event, this.state.login.username, this.state.login.password)} id="login">
+                {/* put handleSubmit in form tag */}
+                    <fieldset>
+                        <legend>Log In</legend>
+                        <label htmlFor="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value={this.state.login.username}
+                            onChange={this.handleChangeLogin}
+                        />
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={this.state.login.password}
+                            onChange={this.handleChangeLogin}
+                        />
+                        <input type="submit"/>
+                    </fieldset>
+                </form>
 
-            <form onSubmit={(event) => this.props.handleSubmit(event, this.state.username, this.state.password)}>
-            {/* put handleSubmit in form tag */}
-                <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                />
-                <input type="submit"/>
-            </form>
 
             </div>
         )

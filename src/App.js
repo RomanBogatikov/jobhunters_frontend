@@ -106,8 +106,17 @@ class App extends React.Component {
     console.log('submitted!')
     console.log('username=', username);
     console.log('password=', password);
+    console.log('event=', event.currentTarget.id);
+    let route;
+    if (event.currentTarget.id === 'signup') {
+      route = '/users';
+    }
 
-    fetch('http://localhost:3003' + '/users', {
+    if (event.currentTarget.id === 'login') {
+      route = '/sessions'
+    }
+
+    fetch('http://localhost:3003' + route, {
         method: 'POST',
         body:JSON.stringify({
             username: username,
