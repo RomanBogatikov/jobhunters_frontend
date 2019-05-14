@@ -2,17 +2,15 @@
   "name": "job-tracker-front-end",
   "version": "0.1.0",
   "engines": {
-    "node": "11.15.0",
-    "npm": "6.9.0"
-  },
-  "private": true,
-  "engines": {
     "node": "10.15.3",
     "npm": "6.4.1"
   },
+  "private": true,
   "dependencies": {
+    "materialize-css": "^1.0.0-rc.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-materialize": "^3.3.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1"
   },

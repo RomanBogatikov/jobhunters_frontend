@@ -2,7 +2,14 @@ import React from 'react';
 import Login from './components/Login'
 import CreateForm from './components/CreateForm'
 import Show from './components/Show'
+import NavBar from './components/NavBar'
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css/dist/js/materialize.min.js'
+
+
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+
+// START OF REACT MATERILIZE
 
 let baseURL = process.env.REACT_APP_BASEURL
 
@@ -138,14 +145,25 @@ class App extends React.Component {
   render() {
     if (this.state.isAuthenticated) {
       return (
-        <div className="container">
-          <h1>This is the start of the frontend!</h1>
-          { /* logout goes here */ }
 
+        <div >
+        
+      <NavBar className="orange" />
+        
+        <div className="container">
+       
+          <h1>Jobs Hunter frontend!</h1>
+          <h4 className="orange lighten-2 center white-text">Add jobs</h4>
+          { /* logout goes here */ }
+          
           <CreateForm
             handleAddJob={this.handleAddJob}
             baseURL={baseURL}
           />
+
+<div className="grey lighten-5">
+  <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
+
 
           <table>
             <tbody>
@@ -165,7 +183,7 @@ class App extends React.Component {
                         ? "applied"
                         : "not applied"}
                       </td>
-                      <button onClick={() => this.toggleApplied(jobs)}>
+                      <button className="floating orange white-text"onClick={() => this.toggleApplied(jobs)}>
                         Applied
                       </button>
                     </tr>
@@ -175,10 +193,14 @@ class App extends React.Component {
             </tbody>
           </table>
 
+          </div>
+
           {(this.state.job)
             ? <Show job={this.state.job}/>
             : null
           }
+
+        </div>
 
         </div>
       )
@@ -193,3 +215,4 @@ class App extends React.Component {
 }
 
 export default App;
+

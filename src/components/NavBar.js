@@ -1,4 +1,5 @@
 import React from 'react'
+import 'materialize-css/dist/css/materialize.min.css'
 /*
 Dependencies:
 Materialize CSS:
@@ -15,9 +16,9 @@ class NavBar extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <nav>
+            <nav className="orange">
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo right" >JobTracker</a>
+                    <a href="#" className="brand-logo right" >JobHunter</a>
                     <a href="#" data-target="mobile-links" className="sidenav-trigger">
                         <i className="material-icons">menu</i>
                     </a>
