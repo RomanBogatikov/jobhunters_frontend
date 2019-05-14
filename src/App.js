@@ -4,8 +4,17 @@ import CreateForm from './components/CreateForm'
 import Show from './components/Show'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
-let baseURL = 'http://localhost:3003'
-// JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
+let baseURL = process.env.REACT_APP_BASEURL
+
+//alternate baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3003'
+} else {
+  baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
+}
+
+console.log('current base URL:', baseURL)
 
 class App extends React.Component {
   // ADDED CONSTRUCTOR
