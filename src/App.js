@@ -2,6 +2,8 @@ import React from 'react';
 import Login from './components/Login'
 import CreateForm from './components/CreateForm'
 import Show from './components/Show'
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+
 let baseURL = 'http://localhost:3003'
 // JUST TO RENDER THE DATA, I ADDED LOCALHOST:3003 TO BASEURL. WE CAN UPDATE TO THE BUILD PACK LATER ON.
 
@@ -11,13 +13,16 @@ class App extends React.Component {
     super(props)
     this.state = {
       jobs: [],
-      job: '' // prop for show route obj
+      job: '', // prop for show route obj
+      username: '',
+      isAuthenticated: false,
     }
     this.deleteJob = this.deleteJob.bind(this)
     this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
@@ -37,7 +42,7 @@ class App extends React.Component {
       })
     })
   }
-  
+
   getJobs() {
     fetch(baseURL + '/jobs')
       .then(data => {
@@ -83,53 +88,98 @@ class App extends React.Component {
     })
   }
 
-  render() {
+  handleSubmit(event, username, password) {
+    event.preventDefault()
+    // send to login route on server
+        //fetch
+            // on success, go to index page
+    // clear values after submit
+    console.log('submitted!')
+    console.log('username=', username);
+    console.log('password=', password);
 
-    return (
-      <div className="container">
-        <h1>This is the start of the frontend!</h1>
-        <Login />
-
-        <CreateForm 
-          handleAddJob={this.handleAddJob}
-          baseURL={baseURL}
-        />
-
-        <table>
-          <tbody>
-            { this.state.jobs.map(jobs => {
-                return (
-                  <tr 
-                  key={jobs._id}
-                  onMouseOver={() => this.getSingleJob(jobs)}
-                  >
-                    <td> {jobs.business_title }</td>
-                    <td> {jobs.url }</td>
-                    <td onClick={() => this.deleteJob(jobs._id)}>
-                      &times;
-                    </td>
-                    <td>
-                      {(jobs.applied)
-                      ? "applied"
-                      : "not applied"}
-                    </td>
-                    <button onClick={() => this.toggleApplied(jobs)}>
-                      Applied
-                    </button>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
-
-        {(this.state.job)
-          ? <Show job={this.state.job}/>
-          : null
+    fetch('http://localhost:3003' + '/users', {
+        method: 'POST',
+        body:JSON.stringify({
+            username: username,
+            password: password,
+        }),
+        headers: {
+            'Content-Type': 'application/json'
         }
+    }).then(res => {
+        if (res.status === 200) {
+            // console.log('ready to isAuthenticated');
+            // this.props.history.push('/');
+            this.setState({
+                isAuthenticated: true,
+                username: username,
+            })
+            // isAuthenticated = true;
+        } else {
+            const error = new Error(res.error);
+            throw error;
+        }
+    }).catch(err => {
+        console.error(err);
+        alert('Error logging in. Please, try again.')
+    })
+}
 
-      </div>
-    )
+  render() {
+    if (this.state.isAuthenticated) {
+      return (
+        <div className="container">
+          <h1>This is the start of the frontend!</h1>
+          { /* logout goes here */ }
+
+          <CreateForm
+            handleAddJob={this.handleAddJob}
+            baseURL={baseURL}
+          />
+
+          <table>
+            <tbody>
+              { this.state.jobs.map(jobs => {
+                  return (
+                    <tr
+                    key={jobs._id}
+                    onMouseOver={() => this.getSingleJob(jobs)}
+                    >
+                      <td> {jobs.business_title }</td>
+                      <td> {jobs.url }</td>
+                      <td onClick={() => this.deleteJob(jobs._id)}>
+                        &times;
+                      </td>
+                      <td>
+                        {(jobs.applied)
+                        ? "applied"
+                        : "not applied"}
+                      </td>
+                      <button onClick={() => this.toggleApplied(jobs)}>
+                        Applied
+                      </button>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+
+          {(this.state.job)
+            ? <Show job={this.state.job}/>
+            : null
+          }
+
+        </div>
+      )
+    } else {
+      return (
+        <Login
+          handleSubmit={this.handleSubmit}
+        />)
+    }
+
   }
 }
 
