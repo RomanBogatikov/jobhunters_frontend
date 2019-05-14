@@ -32,6 +32,7 @@ class App extends React.Component {
       job: '', // prop for show route obj
       username: '',
       isAuthenticated: false,
+      resMessage: '',
     }
     this.deleteJob = this.deleteJob.bind(this)
     this.getJobs = this.getJobs.bind(this)
@@ -143,12 +144,16 @@ class App extends React.Component {
             })
             // isAuthenticated = true;
         } else {
-            const error = new Error(res.error);
-            throw error;
-            // return res;
+            // const error = new Error(res.error);
+            // throw error;
+            return res.text();
         }
-    }).catch(err => {
-        console.error(err);
+    })
+    .then(resMessage => this.setState({
+      resMessage: resMessage,
+    }))
+    .catch(err => {
+        console.error('err=', err);
         alert('Error logging in. Please, try again.')
     })
   }
@@ -163,25 +168,24 @@ class App extends React.Component {
       headers: {
           'Content-Type': 'application/json'
       }
-  }).then(res => {
-    if (res.status === 200) {
-        // console.log('ready to isAuthenticated');
-        // this.props.history.push('/');
-        this.setState({
-            isAuthenticated: false,
-            username: '',
-        })
-        // isAuthenticated = true;
-    } else {
-        const error = new Error(res.error);
-        throw error;
-        // return res;
-    }
-}).catch(err => {
-    console.error(err);
-    alert('Error logging in. Please, try again.')
-})
-
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('ready to isAuthenticated');
+          // this.props.history.push('/');
+          this.setState({
+              isAuthenticated: false,
+              username: '',
+          })
+          // isAuthenticated = true;
+      } else {
+          const error = new Error(res.error);
+          throw error;
+          // return res;
+      }
+    }).catch(err => {
+        console.error(err);
+        alert('Error logging in. Please, try again.')
+    })
   }
 
 
@@ -249,9 +253,13 @@ class App extends React.Component {
       )
     } else {
       return (
-        <Authorization
-          handleSubmit={this.handleSubmit}
-        />)
+        <>
+          <Authorization
+            handleSubmit={this.handleSubmit}
+          />
+          <div>{this.state.resMessage}</div>
+        </>
+        )
     }
 
   }
