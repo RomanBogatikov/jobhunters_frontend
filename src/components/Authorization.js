@@ -3,7 +3,7 @@ import React from 'react'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
 
-class Login extends React.Component {
+class Authorization extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -146,4 +146,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default Authorization

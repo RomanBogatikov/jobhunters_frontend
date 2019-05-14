@@ -35,7 +35,7 @@ class App extends React.Component {
       resMessage: '',
     }
     this.deleteJob = this.deleteJob.bind(this)
-    this.getJobs = this.getJobs.bind(this)
+    // this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
@@ -43,9 +43,9 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  componentDidMount() {
-    this.getJobs()
-  }
+  // componentDidMount() {
+  //   this.getJobs()
+  // }
 
   deleteJob(id) {
     // remove selected job from database and rerender state
@@ -61,18 +61,18 @@ class App extends React.Component {
     })
   }
 
-  getJobs() {
-    fetch(baseURL + '/jobs')
-      .then(data => {
-        return data.json()
-      },
-        err => console.log(err))
-      .then(parsedData => this.setState({ jobs: parsedData }),
-        err => console.log(err))
+  // getJobs() {
+  //   fetch(baseURL + '/jobs')
+  //     .then(data => {
+  //       return data.json()
+  //     },
+  //       err => console.log(err))
+  //     .then(parsedData => this.setState({ jobs: parsedData }),
+  //       err => console.log(err))
 
-    console.log('current base URL:', baseURL)
+  //   console.log('current base URL:', baseURL)
 
-  }
+  // }
 
   getSingleJob(job) {
     // sets this.state.job to selected job for Show component
