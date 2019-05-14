@@ -39,6 +39,7 @@ class App extends React.Component {
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   componentDidMount() {
@@ -150,22 +151,54 @@ class App extends React.Component {
         console.error(err);
         alert('Error logging in. Please, try again.')
     })
-}
+  }
+
+  handleLogout() {
+    fetch('http://localhost:3003/sessions/delete', {
+      method: 'DELETE',
+      // body:JSON.stringify({
+      //     username: username,
+      //     password: password,
+      // }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  }).then(res => {
+    if (res.status === 200) {
+        // console.log('ready to isAuthenticated');
+        // this.props.history.push('/');
+        this.setState({
+            isAuthenticated: false,
+            username: '',
+        })
+        // isAuthenticated = true;
+    } else {
+        const error = new Error(res.error);
+        throw error;
+        // return res;
+    }
+}).catch(err => {
+    console.error(err);
+    alert('Error logging in. Please, try again.')
+})
+
+  }
+
 
   render() {
     if (this.state.isAuthenticated) {
       return (
 
         <div >
-        
+
       <NavBar className="orange" />
-        
+
         <div className="container">
-       
-          <h1>Jobs Hunter frontend!</h1>
+          <button onClick={this.handleLogout}>Log Out</button>
+          <h1>Welcome {this.state.username}!</h1>
           <h4 className="orange lighten-2 center white-text">Add jobs</h4>
           { /* logout goes here */ }
-          
+
           <CreateForm
             handleAddJob={this.handleAddJob}
             baseURL={baseURL}
