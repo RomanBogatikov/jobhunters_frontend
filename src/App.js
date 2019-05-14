@@ -32,18 +32,20 @@ class App extends React.Component {
       job: '', // prop for show route obj
       username: '',
       isAuthenticated: false,
+      resMessage: '',
     }
     this.deleteJob = this.deleteJob.bind(this)
-    this.getJobs = this.getJobs.bind(this)
+    // this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
-  componentDidMount() {
-    this.getJobs()
-  }
+  // componentDidMount() {
+  //   this.getJobs()
+  // }
 
   deleteJob(id) {
     // remove selected job from database and rerender state
@@ -59,18 +61,18 @@ class App extends React.Component {
     })
   }
 
-  getJobs() {
-    fetch(baseURL + '/jobs')
-      .then(data => {
-        return data.json()
-      },
-        err => console.log(err))
-      .then(parsedData => this.setState({ jobs: parsedData }),
-        err => console.log(err))
+  // getJobs() {
+  //   fetch(baseURL + '/jobs')
+  //     .then(data => {
+  //       return data.json()
+  //     },
+  //       err => console.log(err))
+  //     .then(parsedData => this.setState({ jobs: parsedData }),
+  //       err => console.log(err))
 
-    console.log('current base URL:', baseURL)
+  //   console.log('current base URL:', baseURL)
 
-  }
+  // }
 
   getSingleJob(job) {
     // sets this.state.job to selected job for Show component
@@ -142,30 +144,65 @@ class App extends React.Component {
             })
             // isAuthenticated = true;
         } else {
-            const error = new Error(res.error);
-            throw error;
-            // return res;
+            // const error = new Error(res.error);
+            // throw error;
+            return res.text();
         }
+    })
+    .then(resMessage => this.setState({
+      resMessage: resMessage,
+    }))
+    .catch(err => {
+        console.error('err=', err);
+        alert('Error logging in. Please, try again.')
+    })
+  }
+
+  handleLogout() {
+    fetch('http://localhost:3003/sessions/delete', {
+      method: 'DELETE',
+      // body:JSON.stringify({
+      //     username: username,
+      //     password: password,
+      // }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('ready to isAuthenticated');
+          // this.props.history.push('/');
+          this.setState({
+              isAuthenticated: false,
+              username: '',
+          })
+          // isAuthenticated = true;
+      } else {
+          const error = new Error(res.error);
+          throw error;
+          // return res;
+      }
     }).catch(err => {
         console.error(err);
         alert('Error logging in. Please, try again.')
     })
-}
+  }
+
 
   render() {
     if (this.state.isAuthenticated) {
       return (
 
         <div >
-        
+
       <NavBar className="orange" />
-        
+
         <div className="container">
-       
-          <h1>Jobs Hunter frontend!</h1>
+          <button onClick={this.handleLogout}>Log Out</button>
+          <h1>Welcome {this.state.username}!</h1>
           <h4 className="orange lighten-2 center white-text">Add jobs</h4>
           { /* logout goes here */ }
-          
+
           <CreateForm
             handleAddJob={this.handleAddJob}
             baseURL={baseURL}
@@ -216,9 +253,13 @@ class App extends React.Component {
       )
     } else {
       return (
-        <Authorization
-          handleSubmit={this.handleSubmit}
-        />)
+        <>
+          <Authorization
+            handleSubmit={this.handleSubmit}
+          />
+          <div>{this.state.resMessage}</div>
+        </>
+        )
     }
 
   }
