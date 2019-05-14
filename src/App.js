@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './components/Login'
+import Authorization from './components/Authorization'
 import CreateForm from './components/CreateForm'
 import Show from './components/Show'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
@@ -175,7 +175,7 @@ class App extends React.Component {
       )
     } else {
       return (
-        <Login
+        <Authorization
           handleSubmit={this.handleSubmit}
         />)
     }
