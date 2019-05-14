@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './components/Login'
+import Authorization from './components/Authorization'
 import CreateForm from './components/CreateForm'
 import Show from './components/Show'
 import NavBar from './components/NavBar'
@@ -113,8 +113,17 @@ class App extends React.Component {
     console.log('submitted!')
     console.log('username=', username);
     console.log('password=', password);
+    console.log('event=', event.currentTarget.id);
+    let route;
+    if (event.currentTarget.id === 'signup') {
+      route = '/users';
+    }
 
-    fetch('http://localhost:3003' + '/users', {
+    if (event.currentTarget.id === 'login') {
+      route = '/sessions'
+    }
+
+    fetch('http://localhost:3003' + route, {
         method: 'POST',
         body:JSON.stringify({
             username: username,
@@ -135,6 +144,7 @@ class App extends React.Component {
         } else {
             const error = new Error(res.error);
             throw error;
+            // return res;
         }
     }).catch(err => {
         console.error(err);
@@ -206,7 +216,7 @@ class App extends React.Component {
       )
     } else {
       return (
-        <Login
+        <Authorization
           handleSubmit={this.handleSubmit}
         />)
     }
