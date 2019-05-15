@@ -204,6 +204,7 @@ class App extends React.Component {
           <CreateForm
             handleAddJob={this.handleAddJob}
             baseURL={baseURL}
+            username={this.state.username}
           />
 
 <div className="grey lighten-5">

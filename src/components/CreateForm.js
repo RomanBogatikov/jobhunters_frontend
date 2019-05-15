@@ -25,7 +25,8 @@ class CreateForm extends React.Component {
             body:JSON.stringify({
                 agency: this.state.agency, business_title: this.state.business_title,
                 job_description: this.state.job_description,
-                url: this.state.url
+                url: this.state.url,
+                username: this.props.username
             }),
             headers: {
                 'Content-Type': 'application/json'
