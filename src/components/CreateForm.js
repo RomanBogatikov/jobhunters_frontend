@@ -20,7 +20,7 @@ class CreateForm extends React.Component {
     }
     handleSubmit(event) {
         event.preventDefault()
-        fetch(this.props.baseURL + '/jobs', {
+        fetch(this.props.baseURL + '/jobs/create', {
             method: 'POST',
             body:JSON.stringify({
                 agency: this.state.agency, business_title: this.state.business_title,

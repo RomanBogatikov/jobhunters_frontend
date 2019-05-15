@@ -34,7 +34,7 @@ class App extends React.Component {
       resMessage: '',
     }
     this.deleteJob = this.deleteJob.bind(this)
-    // this.getJobs = this.getJobs.bind(this)
+    this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
@@ -49,7 +49,10 @@ class App extends React.Component {
   deleteJob(id) {
     // remove selected job from database and rerender state
     fetch(baseURL + '/jobs/' + id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      body:JSON.stringify({
+        username: this.state.username
+    }),
     }).then(res => {
       const findIndex = this.state.jobs.findIndex(job => job._id === id)
       const copyJobs = [...this.state.jobs]
@@ -60,17 +63,22 @@ class App extends React.Component {
     })
   }
 
-  // getJobs() {
-  //   fetch(baseURL + '/jobs')
-  //     .then(data => {
-  //       return data.json()
-  //     },
-  //       err => console.log(err))
-  //     .then(parsedData => this.setState({ jobs: parsedData }),
-  //       err => console.log(err))
-
-  //   console.log('current base URL:', baseURL)
-  // }
+  // Needs to display jobs for current user
+  getJobs() {
+    fetch(baseURL + '/jobs', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.username
+      })
+    })
+      .then(data => {
+        return data.json()
+      },
+        err => console.log(err))
+      .then(parsedData => this.setState({ jobs: parsedData }),
+        err => console.log(err))
+    console.log('current base URL:', baseURL)
+  }
 
   getSingleJob(job) {
     // sets this.state.job to selected job for Show component
@@ -150,6 +158,7 @@ class App extends React.Component {
     .then(resMessage => this.setState({
       resMessage: resMessage,
     }))
+    .then(this.getJobs)
     .catch(err => {
         console.error('err=', err);
         alert('Error logging in. Please, try again.')
@@ -188,6 +197,7 @@ class App extends React.Component {
 
 
   render() {
+    
     if (this.state.isAuthenticated) {
       return (
 
