@@ -4,10 +4,13 @@ class Show extends React.Component {
     render() {
         return (
             <>
-                <div>
-                    {this.props.job.business_title} |
-                    {this.props.job.agency} |
-                    {this.props.job.job_description}
+                <div className="grey lighten-5">
+                    <h4 className="grey lighten-1 center white-text"> Role Details</h4> 
+                    <hr/>
+                    <p>{this.props.job.agency}</p>
+                    <p>{this.props.job.business_title}</p>
+                    <p>{this.props.job.job_description}</p>
+                     {this.props.job.url}
                 </div>
             </>
         )
