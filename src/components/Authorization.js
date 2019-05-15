@@ -97,6 +97,11 @@ class Authorization extends React.Component {
                     <h1>JobHunters</h1>
                     <h5>A centralized platform for building your future.</h5>
                 </div>
+                <div className="AlertMessage">
+                    <h3>
+                        {this.props.resMessage}
+                    </h3>
+                </div>
                 <div className="FormContainer">
                     <form onSubmit={(event) => this.props.handleSubmit(event, this.state.signup.username, this.state.signup.password)} id="signup">
                         <fieldset>
