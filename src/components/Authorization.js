@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Authorization.css'
 // import { Redirect } from 'react-router-dom'
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
@@ -91,9 +92,12 @@ class Authorization extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="AuthView">
+                <div className="TitleContent">
+                    <h1>JobHunters</h1>
+                    <h5>A centralized platform for building your future.</h5>
+                </div>
                 <form onSubmit={(event) => this.props.handleSubmit(event, this.state.signup.username, this.state.signup.password)} id="signup">
-                {/* put handleSubmit in form tag */}
                     <fieldset>
                         <legend>Sign Up</legend>
                         <label htmlFor="username">Username</label>
