@@ -35,8 +35,8 @@
 
 /* Top level div for forms */
 .FormContainer{
-    width: 40%;
-    margin: 0 auto;
+    width: 30%;
+    margin: 0 2.5% 0 2.5%;
     display: inline-block;
 }
 
