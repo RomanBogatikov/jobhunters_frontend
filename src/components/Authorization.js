@@ -1,8 +1,5 @@
 import React from 'react'
 import '../css/Authorization.css'
-// import { Redirect } from 'react-router-dom'
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
 
 class Authorization extends React.Component {
     constructor(props) {
@@ -18,77 +15,21 @@ class Authorization extends React.Component {
             }
         }
         this.handleChangeSignup = this.handleChangeSignup.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChangeLogin = this.handleChangeLogin.bind(this);
     }
+
     handleChangeSignup(event) {
         this.setState({
             signup: {...this.state.signup, [event.currentTarget.id]: event.currentTarget.value},
 
         })
     }
-        // let signup = {...this.state.si}
-
-        // this.setState({
-        //     signup: {
-        //         {...this.state.signup},
-        //         {[event.currentTarget.id]: event.currentTarget.value}
-        //     }
-        // })
-
 
     handleChangeLogin(event) {
-        // this.setState({login: {
-        //     [event.currentTarget.id]: event.currentTarget.value
-        // }})
         this.setState({
             login: {...this.state.login, [event.currentTarget.id]: event.currentTarget.value},
-
         })
     }
-
-
-    // handleSubmit(event) {
-    //     event.preventDefault()
-    //     // send to login route on server
-    //         //fetch
-    //             // on success, go to index page
-    //     // clear values after submit
-    //     console.log('submitted!')
-
-    //     fetch('http://localhost:3003' + '/users', {
-    //         method: 'POST',
-    //         body:JSON.stringify({
-    //             username: this.state.username,
-    //             password: this.state.password,
-    //         }),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(res => {
-    //         if (res.status === 200) {
-    //             // console.log('ready to redirect');
-    //             // this.props.history.push('/');
-    //             this.setState({
-    //                 redirect: true,
-    //             })
-    //             // redirect = true;
-    //         } else {
-    //             const error = new Error(res.error);
-    //             throw error;
-    //         }
-    //     }).catch(err => {
-    //         console.error(err);
-    //         alert('Error logging in. Please, try again.')
-    //     })
-    // }
-
-    // renderRedirect = () => {
-    //     console.log('renderRedirect');
-    //     if (this.state.redirect) {
-    //         return <Redirect to='/' />
-    //     }
-    // }
 
     render() {
         return (
