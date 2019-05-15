@@ -18,7 +18,7 @@ let baseURL = process.env.REACT_APP_BASEURL
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
 } else {
-  baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
+  baseURL = 'https://enigmatic-beach-40420.herokuapp.com'
 }
 
 console.log('current base URL:', baseURL)
