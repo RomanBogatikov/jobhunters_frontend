@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto');
+
+* {
+    outline: 1px solid black;
+}
+
+/* Top-level div wrapping everything */
+.AuthView {
+    background-image: 
+        /* Darken the image so text is more visible */
+        linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+        ),
+        /* Photo from unsplash */ 
+        url("https://images.unsplash.com/photo-1522165078649-823cf4dbaf46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9");
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+.TitleContent {
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+/* Set image as background */
+/* .BackgroundImg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    filter: grayscale(80%);
+} */
+
+/* All h1 inside top-level div */
+.AuthView h1 {
+    margin-top: 0;
+    font-family: 'IBM Plex Mono', monospace;
+}
+

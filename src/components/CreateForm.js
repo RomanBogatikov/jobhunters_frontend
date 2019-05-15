@@ -12,6 +12,7 @@ class CreateForm extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        // this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this)
     }
     handleChange(event) {
         this.setState({
@@ -33,10 +34,26 @@ class CreateForm extends React.Component {
             }
         }).then(res => res.json())
           .then(resJSON => {
+              console.log('ready to run handleAddJob')
               this.props.handleAddJob(resJSON)
-          }).catch(error => console.error({'Error': error}))
+          })
+          .then(() => {
+                console.log('setState if ready to fire')
+                this.setState({
+                    agency: '',
+                    business_title: '',
+                    job_description: '',
+                    url: ''
+                });
+                console.log('setState fired')
+            }
+          )
+          .catch(error => console.error({'Error': error}))
+
     }
+
     render() {
+        console.log('render of CreatedForm.js fired')
         return(
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="agency">Company</label>
@@ -45,6 +62,7 @@ class CreateForm extends React.Component {
                     id="agency"
                     name="agency"
                     placeholder="Posting Company"
+                    value={this.state.agency}
                     onChange={this.handleChange}
                 />
                 <label htmlFor="business_title">Job Title</label>
@@ -53,6 +71,7 @@ class CreateForm extends React.Component {
                     id="business_title"
                     name="business_title"
                     placeholder="Job title"
+                    value={this.state.business_title}
                     onChange={this.handleChange}
                 />
                 <label htmlFor="job_description">Job Description</label>
@@ -61,13 +80,16 @@ class CreateForm extends React.Component {
                     id="job_description"
                     name="job_description"
                     placeholder="Job description"
+                    value={this.state.job_description}
                     onChange={this.handleChange}
                 />
+                <label htmlFor="url">Job URL</label>
                 <input
                     type="text"
                     id="url"
                     name="url"
                     placeholder="job posting url"
+                    value={this.state.url}
                     onChange={this.handleChange}
                 />
                 <input type="submit"/>

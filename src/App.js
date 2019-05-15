@@ -207,7 +207,7 @@ class App extends React.Component {
 
 
   render() {
-
+    console.log('render of App.js fired')
     if (this.state.isAuthenticated) {
       return (
 
