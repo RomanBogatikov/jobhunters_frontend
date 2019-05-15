@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto');
 
-* {
+/* * {
     outline: 1px solid black;
-}
+} */
 
 /* Top-level div wrapping everything */
 .AuthView {
@@ -22,9 +22,9 @@
 }
 
 .TitleContent {
-    display: inline-block;
-    margin: 0 auto;
-    margin-top: 10%;
+    /* display: inline-block; */
+    /* margin: 0 auto; */
+    padding-top: 10%;
 }
 /* Set image as background */
 /* .BackgroundImg {
@@ -41,7 +41,20 @@
     font-size: 6rem;
 }
 
-input[type=text] {
-    color: #fff;
+.AlertMessage{
+    background-color: #d50000;
 }
 
+.FormContainer{
+    width: 40%;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.input-field {
+    background-color: #fff;
+}
+
+input[type=text]:not(.browser-default), input[type=password]:not(.browser-default) {
+    margin-bottom: 0 !important;
+}

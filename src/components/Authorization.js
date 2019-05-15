@@ -97,52 +97,69 @@ class Authorization extends React.Component {
                     <h1>JobHunters</h1>
                     <h5>A centralized platform for building your future.</h5>
                 </div>
-                <form onSubmit={(event) => this.props.handleSubmit(event, this.state.signup.username, this.state.signup.password)} id="signup">
-                    <fieldset>
-                        <legend>Sign Up</legend>
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={this.state.signup.username}
-                            onChange={this.handleChangeSignup}
-                        />
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={this.state.signup.password}
-                            onChange={this.handleChangeSignup}
-                        />
-                        <input type="submit"/>
-                    </fieldset>
-                </form>
+                <div className="AlertMessage">
+                    <h3>
+                        {this.props.resMessage}
+                    </h3>
+                </div>
+                <div className="FormContainer">
+                    <form onSubmit={(event) => this.props.handleSubmit(event, this.state.signup.username, this.state.signup.password)} id="signup">
+                        <fieldset>
+                            <legend>Sign Up</legend>
+                            <div className="input-field">
+                                <label htmlFor="username">Username</label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    value={this.state.signup.username}
+                                    onChange={this.handleChangeSignup}
+                                />
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={this.state.signup.password}
+                                    onChange={this.handleChangeSignup}
+                                />
+                            </div>
+                            <input type="submit" className="btn green accent-4"/>
+                        </fieldset>
+                    </form>
+                </div>
 
-                <form onSubmit={(event) => this.props.handleSubmit(event, this.state.login.username, this.state.login.password)} id="login">
-                {/* put handleSubmit in form tag */}
-                    <fieldset>
-                        <legend>Log In</legend>
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={this.state.login.username}
-                            onChange={this.handleChangeLogin}
-                        />
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={this.state.login.password}
-                            onChange={this.handleChangeLogin}
-                        />
-                        <input type="submit"/>
-                    </fieldset>
-                </form>
+                <div className="FormContainer">
+                    <form onSubmit={(event) => this.props.handleSubmit(event, this.state.login.username, this.state.login.password)} id="login">
+                    {/* put handleSubmit in form tag */}
+                        <fieldset>
+                            <legend>Log In</legend>
+                            <div className="input-field">
+                                <label htmlFor="username">Username</label>
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    value={this.state.login.username}
+                                    onChange={this.handleChangeLogin}
+                                />
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={this.state.login.password}
+                                    onChange={this.handleChangeLogin}
+                                />
+                            </div>
+                            <input type="submit" className="btn green accent-4"/>
+                        </fieldset>
+                    </form>
+                </div>
 
 
             </div>
