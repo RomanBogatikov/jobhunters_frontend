@@ -1,17 +1,24 @@
 import React from 'react';
-import Login from './components/Login'
+import Authorization from './components/Authorization'
 import CreateForm from './components/CreateForm'
 import Show from './components/Show'
+import NavBar from './components/NavBar'
+import 'materialize-css/dist/css/materialize.min.css'
+import M from 'materialize-css/dist/js/materialize.min.js'
+
+
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+
+// START OF REACT MATERILIZE
 
 let baseURL = process.env.REACT_APP_BASEURL
 
-//alternate baseURL = 'https://enigmatic-beach-40420.herokuapp.com'
+//alternate baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
 } else {
-  baseURL = 'https://enigmatic-beach-40420.herokuapp.com'
+  baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
 }
 
 console.log('current base URL:', baseURL)
@@ -25,13 +32,15 @@ class App extends React.Component {
       job: '', // prop for show route obj
       username: '',
       isAuthenticated: false,
+      resMessage: '',
     }
     this.deleteJob = this.deleteJob.bind(this)
-    this.getJobs = this.getJobs.bind(this)
+    // this.getJobs = this.getJobs.bind(this)
     this.getSingleJob = this.getSingleJob.bind(this)
     this.handleAddJob = this.handleAddJob.bind(this)
     this.toggleApplied = this.toggleApplied.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   componentDidMount() {
@@ -106,8 +115,17 @@ class App extends React.Component {
     console.log('submitted!')
     console.log('username=', username);
     console.log('password=', password);
+    console.log('event=', event.currentTarget.id);
+    let route;
+    if (event.currentTarget.id === 'signup') {
+      route = '/users';
+    }
 
-    fetch('http://localhost:3003' + '/users', {
+    if (event.currentTarget.id === 'login') {
+      route = '/sessions'
+    }
+
+    fetch('http://localhost:3003' + route, {
         method: 'POST',
         body:JSON.stringify({
             username: username,
@@ -126,26 +144,73 @@ class App extends React.Component {
             })
             // isAuthenticated = true;
         } else {
-            const error = new Error(res.error);
-            throw error;
+            // const error = new Error(res.error);
+            // throw error;
+            return res.text();
         }
+    })
+    .then(resMessage => this.setState({
+      resMessage: resMessage,
+    }))
+    .catch(err => {
+        console.error('err=', err);
+        alert('Error logging in. Please, try again.')
+    })
+  }
+
+  handleLogout() {
+    fetch('http://localhost:3003/sessions/delete', {
+      method: 'DELETE',
+      // body:JSON.stringify({
+      //     username: username,
+      //     password: password,
+      // }),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+          // console.log('ready to isAuthenticated');
+          // this.props.history.push('/');
+          this.setState({
+              isAuthenticated: false,
+              username: '',
+          })
+          // isAuthenticated = true;
+      } else {
+          const error = new Error(res.error);
+          throw error;
+          // return res;
+      }
     }).catch(err => {
         console.error(err);
         alert('Error logging in. Please, try again.')
     })
-}
+  }
+
 
   render() {
     if (this.state.isAuthenticated) {
       return (
+
+        <div >
+
+      <NavBar className="orange" />
+
         <div className="container">
-          <h1>This is the start of the frontend!</h1>
+          <button onClick={this.handleLogout}>Log Out</button>
+          <h1>Welcome {this.state.username}!</h1>
+          <h4 className="orange lighten-2 center white-text">Add jobs</h4>
           { /* logout goes here */ }
 
           <CreateForm
             handleAddJob={this.handleAddJob}
             baseURL={baseURL}
           />
+
+<div className="grey lighten-5">
+  <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
+
 
           <table>
             <tbody>
@@ -165,7 +230,7 @@ class App extends React.Component {
                         ? "applied"
                         : "not applied"}
                       </td>
-                      <button onClick={() => this.toggleApplied(jobs)}>
+                      <button className="floating orange white-text"onClick={() => this.toggleApplied(jobs)}>
                         Applied
                       </button>
                     </tr>
@@ -175,21 +240,30 @@ class App extends React.Component {
             </tbody>
           </table>
 
+          </div>
+
           {(this.state.job)
             ? <Show job={this.state.job}/>
             : null
           }
 
         </div>
+
+        </div>
       )
     } else {
       return (
-        <Login
-          handleSubmit={this.handleSubmit}
-        />)
+        <>
+          <Authorization
+            handleSubmit={this.handleSubmit}
+          />
+          <div>{this.state.resMessage}</div>
+        </>
+        )
     }
 
   }
 }
 
 export default App;
+
