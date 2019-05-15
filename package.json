@@ -2,13 +2,8 @@
   "name": "job-tracker-front-end",
   "version": "0.1.0",
   "engines": {
-<<<<<<< HEAD
-    "node": "11.15.0",
-    "npm": "6.9.0"
-=======
     "node": "10.15.3",
     "npm": "6.4.1"
->>>>>>> 1dbac7df1b8086be0eb2c7b2024d0a8a8716556f
   },
   "private": true,
   "dependencies": {

@@ -9,7 +9,6 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
-// START OF REACT MATERILIZE
 
 let baseURL = process.env.REACT_APP_BASEURL
 
@@ -43,9 +42,9 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  componentDidMount() {
-    this.getJobs()
-  }
+  // componentDidMount() {
+  //   this.getJobs()
+  // }
 
   deleteJob(id) {
     // remove selected job from database and rerender state
@@ -61,18 +60,17 @@ class App extends React.Component {
     })
   }
 
-  getJobs() {
-    fetch(baseURL + '/jobs')
-      .then(data => {
-        return data.json()
-      },
-        err => console.log(err))
-      .then(parsedData => this.setState({ jobs: parsedData }),
-        err => console.log(err))
+  // getJobs() {
+  //   fetch(baseURL + '/jobs')
+  //     .then(data => {
+  //       return data.json()
+  //     },
+  //       err => console.log(err))
+  //     .then(parsedData => this.setState({ jobs: parsedData }),
+  //       err => console.log(err))
 
-    console.log('current base URL:', baseURL)
-
-  }
+  //   console.log('current base URL:', baseURL)
+  // }
 
   getSingleJob(job) {
     // sets this.state.job to selected job for Show component
