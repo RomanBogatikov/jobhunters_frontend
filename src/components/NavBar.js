@@ -16,7 +16,7 @@ class NavBar extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <nav className="orange">
+            <nav className="green ">
                 <div className="nav-wrapper">
                     <a href="#" className="brand-logo center" >JobHunters</a>
                     <a href="#" data-target="mobile-links" className="sidenav-trigger">

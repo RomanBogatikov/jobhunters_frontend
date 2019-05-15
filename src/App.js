@@ -4,8 +4,13 @@ import CreateForm from './components/CreateForm'
 import NavBar from './components/NavBar'
 import Show from './components/Show'
 import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css/dist/js/materialize.min.js'
+import './App.css'
+
+
+// import M from 'materialize-css/dist/js/materialize.min.js'
 import { Row, Col } from 'react-materialize';
+
+
 
 
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
@@ -215,10 +220,11 @@ class App extends React.Component {
 
           <NavBar handleLogout = {this.handleLogout} />
 
-          <div className="container ">
+          <div className="container  grey lighten-4">
 
-            <h4>Welcome, {this.state.username}!</h4>
-            <h4 className="orange lighten-2 center white-text">Add jobs</h4>
+            <h2>Welcome, {this.state.username}!</h2>
+            <h4 className=" green accent-4
+ center white-text">Add jobs</h4>
             { /* logout goes here */}
 
             <CreateForm
