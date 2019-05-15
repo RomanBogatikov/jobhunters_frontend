@@ -279,8 +279,8 @@ class App extends React.Component {
         <>
           <Authorization
             handleSubmit={this.handleSubmit}
+            resMessage={this.state.resMessage}
           />
-          <div>{this.state.resMessage}</div>
         </>
       )
     }
