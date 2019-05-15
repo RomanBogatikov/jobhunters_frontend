@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto');
 
-/* * {
-    outline: 1px solid black;
-} */
-
 /* Top-level div wrapping everything */
 .AuthView {
     background-image: 
@@ -22,17 +18,8 @@
 }
 
 .TitleContent {
-    /* display: inline-block; */
-    /* margin: 0 auto; */
     padding-top: 10%;
 }
-/* Set image as background */
-/* .BackgroundImg {
-    position: relative;
-    width: 100%;
-    height: auto;
-    filter: grayscale(80%);
-} */
 
 /* All h1 inside top-level div */
 .AuthView h1 {
@@ -41,20 +28,24 @@
     font-size: 6rem;
 }
 
+/* Message for incorrect/failed login */
 .AlertMessage{
     background-color: #d50000;
 }
 
+/* Top level div for forms */
 .FormContainer{
     width: 40%;
     margin: 0 auto;
     display: inline-block;
 }
 
+/* Materialize CSS label/input wrapper */
 .input-field {
     background-color: #fff;
 }
 
+/* Remove bottom margin from username/password fields */
 input[type=text]:not(.browser-default), input[type=password]:not(.browser-default) {
     margin-bottom: 0 !important;
 }
