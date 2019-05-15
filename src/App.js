@@ -249,19 +249,23 @@ class App extends React.Component {
                           // SHOW ROUTE IN TABLE
                           <tr
                             key={jobs._id}
-                            onMouseOver={() => this.getSingleJob(jobs)}
+                            onClick={() => this.getSingleJob(jobs)}
                           >  
                             <td> {jobs.agency}</td>
                             <td> {jobs.business_title}</td>
                             {/* END OF SHOW ROUTE */}
-                            <button className="btn green accent-4 white-text" onClick={() => this.toggleApplied(jobs)}>
-                              Applied
+                            <button className= { jobs.applied ? "btn disabled" : "btn green accent-4" } onClick={() => this.toggleApplied(jobs)}>
+                              {(jobs.applied) ? 
+                              "Applied"
+                              :
+                              "Apply"}
+                              {/* Applied */}
                       </button>
-                            <td>
+                            {/* <td>
                               {(jobs.applied)
                                 ? "applied"
                                 : "not applied"}
-                            </td>
+                            </td> */}
                             <td onClick={() => this.deleteJob(jobs._id)}>
                               &times;
                       </td>
