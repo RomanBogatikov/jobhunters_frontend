@@ -220,9 +220,12 @@ class App extends React.Component {
 
           <NavBar handleLogout = {this.handleLogout} />
 
-          <div className="container  grey lighten-4">
+          <div className="container ">
 
             <h2>Welcome, {this.state.username}!</h2>
+
+            <div className="grey lighten-4">
+
             <h4 className=" green accent-4
  center white-text">Add jobs</h4>
             { /* logout goes here */}
@@ -232,10 +235,12 @@ class App extends React.Component {
               baseURL={baseURL}
               username={this.state.username}
             />
+            </div>
             <Row>
               <Col s={9}>
-                <div className="grey lighten-5">
-                  <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
+                {/* <div className="grey lighten-5"> */}
+                  <h4 className="green accent-4
+ center white-text center white-text">Jobs Inbox</h4>
                    <table>
                     <tbody>
                       {this.state.jobs.map(jobs => {
@@ -249,25 +254,25 @@ class App extends React.Component {
                             <td> {jobs.agency}</td>
                             <td> {jobs.business_title}</td>
                             {/* END OF SHOW ROUTE */}
-                            <td onClick={() => this.deleteJob(jobs._id)}>
-                              &times;
-                      </td>
+                            <button className="btn green accent-4 white-text" onClick={() => this.toggleApplied(jobs)}>
+                              Applied
+                      </button>
                             <td>
                               {(jobs.applied)
                                 ? "applied"
                                 : "not applied"}
                             </td>
-                            <button className="floating orange white-text" onClick={() => this.toggleApplied(jobs)}>
-                              Applied
-                      </button>
+                            <td onClick={() => this.deleteJob(jobs._id)}>
+                              &times;
+                      </td>
                           </tr>
                         )
                       })
                       }
                     </tbody>
                   </table>
+                {/* </div> */}
 
-                </div>
               </Col>
               <Col s={3} >
                 {(this.state.job)
