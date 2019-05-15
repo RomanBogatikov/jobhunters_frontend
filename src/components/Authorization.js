@@ -107,22 +107,24 @@ class Authorization extends React.Component {
                         <fieldset>
                             <legend>Sign Up</legend>
                             <div className="input-field">
-                                <label htmlFor="username">Username</label>
+                                <label className="active" htmlFor="username">Username</label>
                                 <input
                                     type="text"
                                     id="username"
                                     name="username"
                                     value={this.state.signup.username}
+                                    placeholder="Enter Username"
                                     onChange={this.handleChangeSignup}
                                 />
                             </div>
                             <div className="input-field">
-                                <label htmlFor="password">Password</label>
+                                <label className="active" htmlFor="password">Password</label>
                                 <input
                                     type="password"
                                     id="password"
                                     name="password"
                                     value={this.state.signup.password}
+                                    placeholder="Enter Password"
                                     onChange={this.handleChangeSignup}
                                 />
                             </div>
@@ -133,26 +135,26 @@ class Authorization extends React.Component {
 
                 <div className="FormContainer">
                     <form onSubmit={(event) => this.props.handleSubmit(event, this.state.login.username, this.state.login.password)} id="login">
-                    {/* put handleSubmit in form tag */}
                         <fieldset>
                             <legend>Log In</legend>
                             <div className="input-field">
-                                <label htmlFor="username">Username</label>
+                                <label className="active" htmlFor="username">Username</label>
                                 <input
                                     type="text"
                                     id="username"
                                     name="username"
                                     value={this.state.login.username}
+                                    placeholder="Enter Username"
                                     onChange={this.handleChangeLogin}
                                 />
                             </div>
                             <div className="input-field">
-                                <label htmlFor="password">Password</label>
+                                <label className="active" htmlFor="password">Password</label>
                                 <input
                                     type="password"
                                     id="password"
                                     name="password"
-                                    value={this.state.login.password}
+                                    value={this.state.login.password}placeholder="Enter Password"
                                     onChange={this.handleChangeLogin}
                                 />
                             </div>
@@ -160,8 +162,6 @@ class Authorization extends React.Component {
                         </fieldset>
                     </form>
                 </div>
-
-
             </div>
         )
     }
