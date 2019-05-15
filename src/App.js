@@ -215,7 +215,7 @@ class App extends React.Component {
 
           <NavBar className="orange" />
 
-          <div className="container">
+          <div className="container ">
             <button onClick={this.handleLogout}>Log Out</button>
             <h1>Welcome {this.state.username}!</h1>
             <h4 className="orange lighten-2 center white-text">Add jobs</h4>
