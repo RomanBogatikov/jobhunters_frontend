@@ -55,7 +55,7 @@ class CreateForm extends React.Component {
     render() {
         console.log('render of CreatedForm.js fired')
         return(
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="grey lighten-5">
                 <label htmlFor="agency">Company</label>
                 <input
                     type="text"
@@ -92,7 +92,7 @@ class CreateForm extends React.Component {
                     value={this.state.url}
                     onChange={this.handleChange}
                 />
-                <input type="submit"/>
+                <input className="btn green accent-4" type="submit"/>
             </form>
         )
     }
