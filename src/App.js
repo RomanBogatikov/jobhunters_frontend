@@ -141,7 +141,7 @@ class App extends React.Component {
       route = '/sessions'
     }
 
-    fetch('http://localhost:3003' + route, {
+    fetch(baseURL + route, {
       method: 'POST',
       body: JSON.stringify({
         username: username,
@@ -176,7 +176,7 @@ class App extends React.Component {
   }
 
   handleLogout() {
-    fetch('http://localhost:3003/sessions/delete', {
+    fetch(baseURL + '/sessions/delete', {
       method: 'DELETE',
       // body:JSON.stringify({
       //     username: username,
