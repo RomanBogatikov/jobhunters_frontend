@@ -64,18 +64,26 @@ class App extends React.Component {
   }
 
   // Needs to display jobs for current user
-  getJobs() {
+  getJobs(username) {
+    console.log(username)
     fetch(baseURL + '/jobs', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
-        username: this.state.username
+        username: username
       })
     })
       .then(data => {
         return data.json()
       },
         err => console.log(err))
-      .then(parsedData => this.setState({ jobs: parsedData }),
+      .then(parsedData => this.setState({ 
+        jobs: parsedData,
+        username: username,
+        isAuthenticated: true
+      }),
         err => console.log(err))
     console.log('current base URL:', baseURL)
   }
@@ -144,11 +152,12 @@ class App extends React.Component {
         if (res.status === 200) {
             // console.log('ready to isAuthenticated');
             // this.props.history.push('/');
-            this.setState({
-                isAuthenticated: true,
-                username: username,
-            })
+            // this.setState({
+            //     isAuthenticated: true,
+            //     username: username,
+            // })
             // isAuthenticated = true;
+            this.getJobs(username)
         } else {
             // const error = new Error(res.error);
             // throw error;
@@ -158,7 +167,6 @@ class App extends React.Component {
     .then(resMessage => this.setState({
       resMessage: resMessage,
     }))
-    .then(this.getJobs)
     .catch(err => {
         console.error('err=', err);
         alert('Error logging in. Please, try again.')
@@ -217,8 +225,8 @@ class App extends React.Component {
             username={this.state.username}
           />
 
-<div className="grey lighten-5">
-  <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
+          <div className="grey lighten-5">
+            <h4 className="orange lighten-2 center white-text">Jobs Inbox</h4>
 
 
           <table>
