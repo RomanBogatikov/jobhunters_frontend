@@ -11,21 +11,26 @@ The Jobs Hunter application solves the problem of job seekers searching for jobs
 </p>
 
 <p>
-Users can add the company name, job title, role description and a link to the online application. The added jobs is then saved to the “Jobs Inbox.” A user can directly access the job link to apply and update their jobs inbox to reflect so.
+Users can add the company name, job title, role description and a link to the online application. The added jobs are then saved to the “Jobs Inbox.” A user can directly access the job link to apply and update their jobs inbox to reflect so.
 </p>
 
 <h2>Technical Details </h2>
 
 <p>
-To build the front-end of the Jobs Hunter application we used React.js. Their is a total of four component routes for the NavBar, Login/Authorization, Create a new job form and a route to show the job details. For CSS styling, we utalized React-Materilized for clean, modern and professional look. 
+To build the front-end of the Jobs Hunter application we used React.js. There is a total of four component routes for the NavBar, Login/Authorization, Create a new job form and a route to show the job details. For CSS styling, we utilized React-Materialize for a clean, modern and professional look. 
 </p>
 
 <p>
 The technical challenges we expeirenced to build the front-end were:
+
 <li> </li>
+
 <li> </li>
+
 <li> </li>
+
 <li> </li>
+
 <li> </li>
 </p>
 
@@ -33,4 +38,4 @@ The technical challenges we expeirenced to build the front-end were:
 
 <p> The project had a deadline of six days to build. If granted more time, we would build out ...</p>
 
-<p></p>
+

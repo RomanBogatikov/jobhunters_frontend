@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono|Roboto');
 
-h1 {
-  font-family: 'Open Sans', sans-serif;
+
+.container {
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 .App {
