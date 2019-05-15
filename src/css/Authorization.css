@@ -38,5 +38,10 @@
 .AuthView h1 {
     margin-top: 0;
     font-family: 'IBM Plex Mono', monospace;
+    font-size: 6rem;
+}
+
+input[type=text] {
+    color: #fff;
 }
 
