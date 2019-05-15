@@ -213,11 +213,11 @@ class App extends React.Component {
 
         <div >
 
-          <NavBar className="orange" />
+          <NavBar handleLogout = {this.handleLogout} />
 
           <div className="container ">
-            <button onClick={this.handleLogout}>Log Out</button>
-            <h1>Welcome {this.state.username}!</h1>
+
+            <h4>Welcome, {this.state.username}!</h4>
             <h4 className="orange lighten-2 center white-text">Add jobs</h4>
             { /* logout goes here */}
 
@@ -239,10 +239,9 @@ class App extends React.Component {
                           <tr
                             key={jobs._id}
                             onMouseOver={() => this.getSingleJob(jobs)}
-                          >
+                          >  
+                            <td> {jobs.agency}</td>
                             <td> {jobs.business_title}</td>
-                            <td> {jobs.url}</td>
-
                             {/* END OF SHOW ROUTE */}
                             <td onClick={() => this.deleteJob(jobs._id)}>
                               &times;

@@ -18,19 +18,17 @@ class NavBar extends React.Component {
             <React.Fragment>
             <nav className="orange">
                 <div className="nav-wrapper">
-                    <a href="#" className="brand-logo center" >JobHunter</a>
+                    <a href="#" className="brand-logo center" >JobHunters</a>
                     <a href="#" data-target="mobile-links" className="sidenav-trigger">
                         <i className="material-icons">menu</i>
                     </a>
                     <ul className="right hide-on-med-and-down">
-                        <li>
+                        <li >
                             <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Log Out</a>
-                        </li>
-                        <li>
-                            <a href="#">Link 3</a>
+                        </li>  
+         
+                        <li onClick={this.props.handleLogout}>
+                        <a href="#">Log Out</a>
                         </li>
                     </ul>
                 </div>
