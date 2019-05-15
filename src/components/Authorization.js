@@ -121,7 +121,7 @@ class Authorization extends React.Component {
                                     onChange={this.handleChangeSignup}
                                 />
                             </div>
-                            <input type="submit"/>
+                            <input type="submit" className="btn"/>
                         </fieldset>
                     </form>
                 </div>
@@ -151,7 +151,7 @@ class Authorization extends React.Component {
                                     onChange={this.handleChangeLogin}
                                 />
                             </div>
-                            <input type="submit"/>
+                            <input type="submit" className="btn"/>
                         </fieldset>
                     </form>
                 </div>
