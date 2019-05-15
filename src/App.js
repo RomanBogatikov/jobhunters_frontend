@@ -80,7 +80,7 @@ class App extends React.Component {
         return data.json()
       },
         err => console.log(err))
-      .then(parsedData => this.setState({ 
+      .then(parsedData => this.setState({
         jobs: parsedData,
         username: username,
         isAuthenticated: true
@@ -206,7 +206,7 @@ class App extends React.Component {
 
 
   render() {
-    
+    console.log('render of App.js fired')
     if (this.state.isAuthenticated) {
       return (
 
