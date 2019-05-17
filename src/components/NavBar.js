@@ -1,16 +1,5 @@
 import React from 'react'
 import 'materialize-css/dist/css/materialize.min.css'
-/*
-Dependencies:
-Materialize CSS:
-    - How do we want to bring in materialize?
-        - CDN links in HTML
-        - Download and include in project folders
-        - react-materialize
-App.js
-    - import NavBar from './components/NavBar'
-    - <NavBar/> in return function
-*/
 
 class NavBar extends React.Component {
     render() {
@@ -25,8 +14,8 @@ class NavBar extends React.Component {
                     <ul className="right hide-on-med-and-down">
                         <li >
                             <a href="#">About</a>
-                        </li>  
-         
+                        </li>
+
                         <li onClick={this.props.handleLogout}>
                         <a href="#">Log Out</a>
                         </li>

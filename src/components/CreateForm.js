@@ -12,7 +12,6 @@ class CreateForm extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        // this.shouldComponentUpdate = this.shouldComponentUpdate.bind(this)
     }
     handleChange(event) {
         this.setState({
@@ -34,18 +33,15 @@ class CreateForm extends React.Component {
             }
         }).then(res => res.json())
           .then(resJSON => {
-              console.log('ready to run handleAddJob')
               this.props.handleAddJob(resJSON)
           })
           .then(() => {
-                console.log('setState if ready to fire')
                 this.setState({
                     agency: '',
                     business_title: '',
                     job_description: '',
                     url: ''
                 });
-                console.log('setState fired')
             }
           )
           .catch(error => console.error({'Error': error}))
@@ -53,7 +49,6 @@ class CreateForm extends React.Component {
     }
 
     render() {
-        console.log('render of CreatedForm.js fired')
         return(
             <form onSubmit={this.handleSubmit} className="grey lighten-5">
                 <label htmlFor="agency">Company</label>

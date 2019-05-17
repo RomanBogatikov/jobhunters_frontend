@@ -11,14 +11,9 @@ import './App.css'
 import { Row, Col } from 'react-materialize';
 
 
-
-
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
-
 let baseURL = process.env.REACT_APP_BASEURL
-
-//alternate baseURL = 'https://enigmatic-beach-40420.herokuapp.com/'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
@@ -26,7 +21,6 @@ if (process.env.NODE_ENV === 'development') {
   baseURL = 'https://enigmatic-beach-40420.herokuapp.com'
 }
 
-console.log('current base URL:', baseURL)
 
 class App extends React.Component {
   // ADDED CONSTRUCTOR
@@ -34,7 +28,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       jobs: [],
-      job: '', // prop for show route obj
+      job: '',
       username: '',
       isAuthenticated: false,
       resMessage: '',
@@ -48,10 +42,8 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.getJobs()
-  // }
 
+  // to delete job from user's job list
   deleteJob(id) {
     // remove selected job from database and rerender state
     fetch(baseURL + '/jobs/' + id, {
@@ -69,7 +61,7 @@ class App extends React.Component {
     })
   }
 
-  // Needs to display jobs for current user
+  // to display jobs for current user
   getJobs(username) {
     console.log(username)
     fetch(baseURL + '/jobs', {
@@ -94,7 +86,7 @@ class App extends React.Component {
     console.log('current base URL:', baseURL)
   }
 
-  // SHOW ROUTE
+  // show job (when clicked)
   getSingleJob(job) {
     // sets this.state.job to selected job for Show component
     this.setState({
@@ -102,6 +94,7 @@ class App extends React.Component {
     })
   }
 
+  // to add a new job to user job list
   handleAddJob(job) {
     // adds created job to this.state.jobs
     const copyJobs = [job, ...this.state.jobs]
@@ -110,6 +103,7 @@ class App extends React.Component {
     })
   }
 
+  // to toggle apply/applied button
   toggleApplied(job) {
     // updates applied prop in selected job
     fetch(baseURL + '/jobs/' + job._id, {
@@ -127,16 +121,9 @@ class App extends React.Component {
       })
   }
 
+  // handles login/signup
   handleSubmit(event, username, password) {
     event.preventDefault()
-    // send to login route on server
-    //fetch
-    // on success, go to index page
-    // clear values after submit
-    console.log('submitted!')
-    console.log('username=', username);
-    console.log('password=', password);
-    console.log('event=', event.currentTarget.id);
     let route;
     if (event.currentTarget.id === 'signup') {
       route = '/users';
@@ -145,7 +132,7 @@ class App extends React.Component {
     if (event.currentTarget.id === 'login') {
       route = '/sessions'
     }
-
+    // check if the user exists in the database
     fetch(baseURL + route, {
       method: 'POST',
       body: JSON.stringify({
@@ -156,18 +143,11 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       }
     }).then(res => {
+      // if yes, display user jobs
       if (res.status === 200) {
-        // console.log('ready to isAuthenticated');
-        // this.props.history.push('/');
-        // this.setState({
-        //     isAuthenticated: true,
-        //     username: username,
-        // })
-        // isAuthenticated = true;
         this.getJobs(username)
       } else {
-        // const error = new Error(res.error);
-        // throw error;
+        // else display response from server
         return res.text();
       }
     })
@@ -175,30 +155,23 @@ class App extends React.Component {
         resMessage: resMessage,
       }))
       .catch(err => {
-        console.error('err=', err);
         alert('Error logging in. Please, try again.')
       })
   }
 
+  // handles user log out
   handleLogout() {
     fetch(baseURL + '/sessions/delete', {
       method: 'DELETE',
-      // body:JSON.stringify({
-      //     username: username,
-      //     password: password,
-      // }),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(res => {
       if (res.status === 200) {
-        // console.log('ready to isAuthenticated');
-        // this.props.history.push('/');
         this.setState({
           isAuthenticated: false,
           username: '',
         })
-        // isAuthenticated = true;
       } else {
         const error = new Error(res.error);
         throw error;
@@ -226,8 +199,7 @@ class App extends React.Component {
 
             <div className="grey lighten-4">
 
-            <h4 className=" green accent-4
- center white-text">Add jobs</h4>
+            <h4 className=" green accent-4 center white-text">Add jobs</h4>
             { /* logout goes here */}
 
             <CreateForm
@@ -239,8 +211,7 @@ class App extends React.Component {
             <Row>
               <Col s={9}>
                 {/* <div className="grey lighten-5"> */}
-                  <h4 className="green accent-4
- center white-text center white-text">Jobs Inbox</h4>
+                  <h4 className="green accent-4 center white-text center white-text">Jobs Inbox</h4>
                    <table>
                     <tbody>
                       {this.state.jobs.map(jobs => {
@@ -250,22 +221,17 @@ class App extends React.Component {
                           <tr
                             key={jobs._id}
                             onClick={() => this.getSingleJob(jobs)}
-                          >  
+                          >
                             <td> {jobs.agency}</td>
                             <td> {jobs.business_title}</td>
                             {/* END OF SHOW ROUTE */}
                             <button className= { jobs.applied ? "btn disabled" : "btn green accent-4" } onClick={() => this.toggleApplied(jobs)}>
-                              {(jobs.applied) ? 
+                              {(jobs.applied) ?
                               "Applied"
                               :
                               "Apply"}
                               {/* Applied */}
                       </button>
-                            {/* <td>
-                              {(jobs.applied)
-                                ? "applied"
-                                : "not applied"}
-                            </td> */}
                             <td onClick={() => this.deleteJob(jobs._id)}>
                               &times;
                       </td>
@@ -275,7 +241,6 @@ class App extends React.Component {
                       }
                     </tbody>
                   </table>
-                {/* </div> */}
 
               </Col>
               <Col s={3} >
