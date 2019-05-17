@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>JobsHunter</h1>
 
-## Available Scripts
+<h2>Jobs Hunter Front-End Overview </h2>
 
-In the project directory, you can run:
+<p>
+Job Hunters removes the friction of having to visit multiple job platforms or search your inbox to find your dream job!
+</p>
 
-### `npm start`
+<p>
+The Jobs Hunter application solves the problem of job seekers searching for jobs online and not having a simple way to save the jobs they are interested in. As employers distribute jobs across the internet, job seekers can come across jobs anywhere. Prior to Job Hunters, one of the ways to save a job was to email yourself the link.
+</p>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p>
+Users can add the company name, job title, role description and a link to the online application. The added jobs are then saved to the “Jobs Inbox.” A user can directly access the job link to apply and update their jobs inbox to reflect so.
+</p>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<h2>Technical Details </h2>
 
-### `npm test`
+<p>
+To build the front-end of the Jobs Hunter application we used React.js. There is a total of four component routes for the NavBar, Login/Authorization, Create a new job form and a route to show the job details. For CSS styling, we utilized React-Materialize for a clean, modern and professional look.
+</p>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p>
+The technical challenges we expeirenced to build the front-end were:
 
-### `npm run build`
+<li>Implementing login with React and Express
+</li>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<li>Rendering user specific jobs from logged in user
+</li>
+</p>
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+<h2>Improvements</h2>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p>The project deadline was six days to build. If allowed more time, we would build out react routes to navigate the website, add web tokens for user authorization and build out site functionality such as a user dashboard to upload resume, application notes and total applied jobs. Regarding UX/UI, we would update the form to post in descending order to render the most recently added jobs first, add date to track application timing, and a contacted field noting if the employer has reached out.
+</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
