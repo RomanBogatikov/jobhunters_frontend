@@ -12,7 +12,7 @@ let baseURL = process.env.REACT_APP_BASEURL
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3003'
 } else {
-  baseURL = 'https://evening-crag-28742.herokuapp.com/'
+  baseURL = 'https://evening-crag-28742.herokuapp.com'
 }
 
 
