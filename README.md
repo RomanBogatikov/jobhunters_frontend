@@ -43,5 +43,5 @@ The technical challenges we expeirenced to build the front-end were:
 <li>A logged in user sees a list of saved jobs</li>
 <li>A user can Create, Read, Update, Delete a job from a job list</li>
 
-
+<p>PS. JobHunters was a group project (group of 3) where I worked mostly on user login/signup and backend routes</p>
 
