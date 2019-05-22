@@ -4,14 +4,8 @@ import CreateForm from './components/CreateForm'
 import NavBar from './components/NavBar'
 import Show from './components/Show'
 import 'materialize-css/dist/css/materialize.min.css'
-import './App.css'
-
-
-// import M from 'materialize-css/dist/js/materialize.min.js'
 import { Row, Col } from 'react-materialize';
-
-
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import './App.css'
 
 let baseURL = process.env.REACT_APP_BASEURL
 
@@ -200,7 +194,6 @@ class App extends React.Component {
             <div className="grey lighten-4">
 
             <h4 className=" green accent-4 center white-text">Add jobs</h4>
-            { /* logout goes here */}
 
             <CreateForm
               handleAddJob={this.handleAddJob}
@@ -210,7 +203,7 @@ class App extends React.Component {
             </div>
             <Row>
               <Col s={9}>
-                {/* <div className="grey lighten-5"> */}
+
                   <h4 className="green accent-4 center white-text center white-text">Jobs Inbox</h4>
                    <table>
                     <tbody>
@@ -230,7 +223,7 @@ class App extends React.Component {
                               "Applied"
                               :
                               "Apply"}
-                              {/* Applied */}
+
                       </button>
                             <td onClick={() => this.deleteJob(jobs._id)}>
                               &times;

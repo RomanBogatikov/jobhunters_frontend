@@ -1,3 +1,4 @@
+// component for user sing up/log in when the app loads
 import React from 'react'
 import '../css/Authorization.css'
 
