@@ -4,8 +4,8 @@ import CreateForm from './components/CreateForm'
 import NavBar from './components/NavBar'
 import Show from './components/Show'
 import 'materialize-css/dist/css/materialize.min.css'
-import { Row, Col } from 'react-materialize';
 import './App.css'
+import { Row, Col } from 'react-materialize';
 
 let baseURL = process.env.REACT_APP_BASEURL
 
@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'development') {
   baseURL = 'https://evening-crag-28742.herokuapp.com'
 }
 
+console.log('current base URL:', baseURL)
 
 class App extends React.Component {
   // ADDED CONSTRUCTOR
