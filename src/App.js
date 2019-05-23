@@ -10,7 +10,8 @@ import { Row, Col } from 'react-materialize';
 let baseURL = process.env.REACT_APP_BASEURL
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3003'
+  baseURL = 'https://evening-crag-28742.herokuapp.com'
+  // baseURL = 'http://localhost:3003'
 } else {
   baseURL = 'https://evening-crag-28742.herokuapp.com'
 }
