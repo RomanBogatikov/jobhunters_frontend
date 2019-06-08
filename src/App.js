@@ -11,8 +11,8 @@ let baseURL = process.env.REACT_APP_BASEURL
 
 if (process.env.NODE_ENV === 'development') {
   // set baseURL in both cases the same because of problems with heroku deployment
-  baseURL = 'https://evening-crag-28742.herokuapp.com'
-  // baseURL = 'http://localhost:3003'
+  // baseURL = 'https://evening-crag-28742.herokuapp.com'
+  baseURL = 'http://localhost:3003'
 } else {
   baseURL = 'https://evening-crag-28742.herokuapp.com'
 }
@@ -39,6 +39,10 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this)
   }
 
+  componentWillMount() {
+    fetch(baseURL + '/users/checkToken')
+    .then(res => console.log(res))
+  }
 
   // to delete job from user's job list
   deleteJob(id) {
@@ -132,6 +136,7 @@ class App extends React.Component {
     // check if the user exists in the database
     fetch(baseURL + route, {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({
         username: username,
         password: password,
@@ -139,9 +144,12 @@ class App extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(res => {
+    })
+    // .then(res => console.log(res.json()))
+    .then(res => {
       // if yes, display user jobs
       if (res.status === 200) {
+        // console.log('response=', res.json())
         this.getJobs(username)
       } else {
         // else display response from server

@@ -1,3 +1,4 @@
+// component to show full job description
 import React from 'react'
 
 class Show extends React.Component {
