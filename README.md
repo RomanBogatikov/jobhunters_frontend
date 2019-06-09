@@ -1,7 +1,11 @@
 <h1>JobHunters</h1>
+<p>
 Link to Job Hunters app: [JobHunters](https://jobs-hunter.herokuapp.com/)
+</p>
 <h2>Job Hunters Front-End Overview </h2>
+<p>
 Job Hunters [Back-End Overview](https://github.com/RomanBogatikov/jobhunters_backend)
+</p>
 <p>
 Job Hunters removes the friction of having to visit multiple job platforms or search your inbox to find your dream job!
 </p>
